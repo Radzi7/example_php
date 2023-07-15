@@ -3,7 +3,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Posts\CommentController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware('auth', 'active', 'is_admin')->as('admin.')->group(function(){
+// Route::prefix('admin')->middleware('auth', 'active', 'is_admin')->as('admin.')->group(function(){
+Route::prefix('admin')->as('admin.')->group(function(){
     Route::redirect('/', '/admin/posts')->name('admin');
 
     Route::get('/posts', [PostController::class, 'index'])->name('posts');

@@ -12,12 +12,12 @@
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('home')}}">
+          <a class="nav-link {{ Route::is('home') ? 'active' : ''}}" aria-current="page" href="{{route('home')}}">
             {{ __('Главная')}}
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{route('blog')}}">
+          <a class="nav-link {{ Route::is('blog*') ? 'active' : ''}}" aria-current="page" href="{{route('blog')}}">
             {{ __('Блог')}}
           </a>
         </li>
@@ -25,12 +25,12 @@
 
       <ul class="navbar-nav ms-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{route('register')}}">
+          <a class="nav-link {{ Route::is('register') ? 'active' : ''}}" aria-current="page" href="{{route('register')}}">
             {{ __('Регистрация')}}
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{route('login')}}">
+          <a class="nav-link {{ Route::is('login') ? 'active' : ''}}" aria-current="page" href="{{route('login')}}">
             {{ __('Вход')}}
           </a>
         </li>

@@ -1,8 +1,8 @@
-@extends('layouts.base')
+@extends('layouts.main')
 
-
-@section('content')
+@section('page.title', "Главная старница")
+@section('main.content')
     <h1>
-        Главная старница
+        {{__('Главная старница')}}
     </h1>
 @endsection

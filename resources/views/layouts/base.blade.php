@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
         .container { max-width: 720px;}
-        .required:after {content: '*'; color:red; margin-left: 3px;}
+        .required:after {content: '*'; color:red;}
     </style>
 </head>
 <body>

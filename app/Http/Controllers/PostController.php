@@ -5,19 +5,35 @@ namespace App\Http\Controllers;
 class PostController extends Controller
 {
     public function index (){
-        return 'Страница список постов';
+        $post = (object)[
+            'id'=> 123,
+            'title'=> "Lorem ipsum dolor sit amet.",
+            'content'=>'Lorem ipsum <strong>dolor</strong> sit amet consectetur adipisicing elit. Exercitationem, placeat?'
+        ];
+        $posts = array_fill(0,10,$post);
+        return view('user.posts.index', compact('posts'));
     }
     public function create (){
-        return 'Страница создание поста';
+        return view('user.posts.create');
     }
     public function store (){
         return 'Запрос создание поста';
     }
     public function show ($post){
-        return "Страница просмотр поста {$post}";
+        $post = (object)[
+            'id'=> 123,
+            'title'=> "Lorem ipsum dolor sit amet.",
+            'content'=>'Lorem ipsum <strong>dolor</strong> sit amet consectetur adipisicing elit. Exercitationem, placeat?'
+        ];
+        return  view('user.posts.show', compact('post'));
     }
-    public function edit (){
-        return 'Страница изменение поста';
+    public function edit ($post){
+        $post = (object)[
+            'id'=> 123,
+            'title'=> "Lorem ipsum dolor sit amet.",
+            'content'=>'Lorem ipsum <strong>dolor</strong> sit amet consectetur adipisicing elit. Exercitationem, placeat?'
+        ];
+        return view('user.posts.edit', compact('post'));
     }
     public function update (){
         return 'Запрос изменение поста';
