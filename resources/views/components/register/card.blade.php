@@ -1,18 +1,4 @@
-@extends('layouts.auth')
-
-@section('page.title', "Страница регистрации")
-
-@section('auth.content')
-    <x-register.card />
-@endsection
-
-
-{{-- @extends('layouts.auth')
-
-@section('page.title', "Регистрация")
-
-@section('auth.content')
-    <x-card>
+<x-card>
         <x-card-header> 
             <x-card-title>
                 {{__('Регистрация')}}
@@ -52,4 +38,3 @@
             </x-form>
         </x-card-body>
     </x-card>
-@endsection --}}

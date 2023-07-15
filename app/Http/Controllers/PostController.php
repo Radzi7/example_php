@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -14,9 +15,12 @@ class PostController extends Controller
         return view('user.posts.index', compact('posts'));
     }
     public function create (){
+        
         return view('user.posts.create');
     }
-    public function store (){
+    public function store (Request $request){
+        $data = $request->all();
+        dd($data);
         return 'Запрос создание поста';
     }
     public function show ($post){
@@ -35,7 +39,9 @@ class PostController extends Controller
         ];
         return view('user.posts.edit', compact('post'));
     }
-    public function update (){
+    public function update (Request $request){
+        $data = $request->all();
+        dd($data);
         return 'Запрос изменение поста';
     }
     public function delete (){

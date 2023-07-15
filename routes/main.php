@@ -16,7 +16,7 @@ Route::redirect('/home', '/')->name('home.redirect');
 Route::get('/test', TestController::class)->name('test')->middleware('token');
 
 
-Route::middleware('guest')->group(function () {
+    Route::middleware('guest')->group(function () {
 // register
     Route::get('register',[RegisterController::class,'index'])->name('register');
     Route::post('register',[RegisterController::class,'store'])->name('register.store');

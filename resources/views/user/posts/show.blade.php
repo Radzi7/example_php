@@ -20,7 +20,6 @@
     </x-title>
     <h2 class="h4">
         {{ $post->title }}
-        
     </h2>
     <div class="small text-muted">
         {{ now()->format('d.m.Y H:i:s') }}
