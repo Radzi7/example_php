@@ -19,9 +19,9 @@ class PostController extends Controller
         return view('user.posts.create');
     }
     public function store (Request $request){
-        $data = $request->all();
-        dd($data);
-        return 'Запрос создание поста';
+        // $data = $request->all();
+        // dd($data);
+        return redirect()->route('user.posts.show', 123);
     }
     public function show ($post){
         $post = (object)[
@@ -39,13 +39,15 @@ class PostController extends Controller
         ];
         return view('user.posts.edit', compact('post'));
     }
-    public function update (Request $request){
-        $data = $request->all();
-        dd($data);
-        return 'Запрос изменение поста';
+    public function update (Request $request, $post){
+        // $data = $request->all();
+        // dd($data);
+        // return redirect()->route('user.posts.show', $post);
+        return redirect()->back();
+        
     }
-    public function delete (){
-        return 'Запрос удаление поста';
+    public function delete ($post){
+        return redirect()->route('user.posts');
     }
     public function like ($post){
         return "Лайк + 1";

@@ -11,6 +11,9 @@ class TestController extends Controller
     //     $this->middleware('token2')->except('store');
     // }
     public function __invoke(){
-        return 'Test';
+        // return 'Test';
+        return response('test', 200, [
+            'foo'=>'bar',
+        ]);
     }
 }

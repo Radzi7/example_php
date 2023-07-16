@@ -21,13 +21,12 @@ class RegisterController extends Controller
         // $agreement = $request->boolean('agreement');
 
         // dd($name, $email, $password, $agreement);
-
-        
         // dd($request->has('name'));
         // dd($request->filled('name'));
         // dd($request->missing('name'));
 
-
-        return 'Запрос на регистрацию';
+        // return "Запрос на регистрацию";
+        // return redirect()->route('user.posts');
+        return redirect()->back()->withInput();
     }
 }

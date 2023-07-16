@@ -26,6 +26,8 @@ class LoginController extends Controller
         // $remember = $request->boolean('remember');
 
         // dd($name, $email, $remember);
-        return 'Запрос на вход';
+        // return redirect()->route('user.posts');
+        return redirect()->back()->withInput();
+        // return 'Запрос на вход';
     }
 }
