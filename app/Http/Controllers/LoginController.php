@@ -7,27 +7,25 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     public function index(Request $request){
-        // $ip = request()->ip();
-        // $path = request()->path();
-        // $url = request()->url();
-        // $full = request()->fullUrl();
-
-        // dd($ip, $path, $url, $full);
-
+        // dd(session()->all());
+        // $foo = session()->get('foo');
+        // $name = session()->get('name');
+        // dd(session()->has('foo'));
+        // dd($foo,$name);
         return view('login.index');
     }
     public function store (Request $request){
-        // $ip = request()->ip();
-        // $path = request()->path();
-        // $url = request()->url();
-        // dd($ip, $path, $url);
-        // $name = $request->input('email');
-        // $email = $request->input('password');
-        // $remember = $request->boolean('remember');
-
-        // dd($name, $email, $remember);
-        // return redirect()->route('user.posts');
-        return redirect()->back()->withInput();
-        // return 'Запрос на вход';
+        
+        // session()->put('foo', 'bar');
+        // session([
+        //     'foo'=>'bar',
+        //     'name'=>'eagle',
+        // ]);
+        // session()->forget('alert');
+        // session()->flush();
+        session(['alert' => __('Добро пожаловать !')]);
+            // alert(__('Добро пожаловать !'));
+        // return redirect()->back()->withInput();
+        return redirect()->route('user.posts');
     }
 }

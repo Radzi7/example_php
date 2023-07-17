@@ -21,6 +21,7 @@ class PostController extends Controller
     public function store (Request $request){
         // $data = $request->all();
         // dd($data);
+        session(['alert' => __('Сохранено.')]);
         return redirect()->route('user.posts.show', 123);
     }
     public function show ($post){
@@ -43,6 +44,7 @@ class PostController extends Controller
         // $data = $request->all();
         // dd($data);
         // return redirect()->route('user.posts.show', $post);
+        session(['alert' => __('Обновлено.')]);
         return redirect()->back();
         
     }
