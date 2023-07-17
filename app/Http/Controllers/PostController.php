@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\Post\StorePostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PostController extends Controller
 {
@@ -18,7 +20,31 @@ class PostController extends Controller
         
         return view('user.posts.create');
     }
+    // public function store (StorePostRequest $request){
     public function store (Request $request){
+        // $validated = $request->validated();
+
+            // $validated = request()->validate([
+            //     'title' => ['required', 'string', 'max:100'],
+            //     'content' => ['required', 'string'],
+            // ]);
+
+        $validated = validator($request->all(),[
+            'title' => ['required', 'string', 'max:100'],
+            'content' => ['required', 'string'],
+        ])->validate();
+
+            // if(true){
+            //     throw ValidationException::withMessages([
+            //         'account' => __("Недостаточно средств."),
+            //     ]);
+            // }
+
+        dd($validated);
+
+
+
+
         // $data = $request->all();
         // dd($data);
         session(['alert' => __('Сохранено.')]);
