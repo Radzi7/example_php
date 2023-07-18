@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\Post\StorePostRequest;
+use App\Models\Post;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -29,10 +32,12 @@ class PostController extends Controller
             //     'content' => ['required', 'string'],
             // ]);
 
-        // $validated = validator($request->all(),[
-        //     'title' => ['required', 'string', 'max:100'],
-        //     'content' => ['required', 'string'],
-        // ])->validate();
+        $validated = validator($request->all(),[
+            'title' => ['required', 'string', 'max:100'],
+            'content' => ['required', 'string'],
+            'published_at' => ['nullable', 'string', 'date'],
+            'published' => ['nullable', 'string', ],
+        ])->validate();
 
             // if(true){
             //     throw ValidationException::withMessages([
@@ -42,7 +47,15 @@ class PostController extends Controller
 
         // dd($validated);
 
+        $post = Post::query()->create([
+            'user_id' => User::query()->value('id'),
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'published_at' => new Carbon($validated['published_at'] ?? null),
+            'published' => $validated['published'] ?? false,
+        ]);
 
+        dd($post->toArray());
 
 
         // $data = $request->all();

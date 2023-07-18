@@ -158,6 +158,9 @@ return [
     'attributes' => [
         'title' => 'заголовок',
         'content' => 'содержание',
+        'name' => 'имя',
+        'password' => 'пароль',
+        'agreement' => 'соглашение'
     ],
 ];
  

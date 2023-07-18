@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -10,23 +11,36 @@ class RegisterController extends Controller
         return view('register.index');
     }
     public function store (Request $request){
-        // $data = $request->all();
-        // $data = $request->only('name', 'email');
-        // $data = $request->except('name', 'email');
-        // dd($data);
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'max:50', 'email', 'unique:users'],
+            'password' => ['required', 'string', 'min:7', 'max:50', 'confirmed'],
+            'agreement' => ['accepted'],  
+        ]);
+        // dd($validated);
+        
+        // 1ый метод
+        // $user = new User;
+        // $user->name = $validated['name'];
+        // $user->email = $validated['email'];
+        // $user->password = bcrypt($validated['password']);
+        // $user->save();
 
-        // $name = $request->input('name');
-        // $email = $request->input('email');
-        // $password = $request->input('password');
-        // $agreement = $request->boolean('agreement');
+        // 2ой метод
+        //   User::create([
+        //     'name' => $validated['name'],
+        //     'email' => $validated['email'],
+        //     'password' => bcrypt($validated['password']),
+        // ]);
+            // dd($user);
+        // 3ий метод статично
+            // $user = new User();
+            // $user->fill(['name' => $validated['name']]); // first
+            // $user->setAttribute('email',  $validated['email']); // second
+            // $user->password = bcrypt($validated['password']); // third
+            // $user->save();
+        // dd($user);
 
-        // dd($name, $email, $password, $agreement);
-        // dd($request->has('name'));
-        // dd($request->filled('name'));
-        // dd($request->missing('name'));
-
-        // return "Запрос на регистрацию";
         return redirect()->route('user.posts');
-        // return redirect()->back()->withInput();
     }
 }

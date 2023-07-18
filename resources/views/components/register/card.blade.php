@@ -14,6 +14,7 @@
                 <x-form-item>
                     <x-label required>{{__('Имя')}}</x-label>
                     <x-input name='name' autofocus/>
+                    {{-- <x-error name="name"/> --}}
                     {{-- <x-input name='name' value="{{ request()->old('name') }}" autofocus/> --}}
                 </x-form-item>
                 <x-form-item>
