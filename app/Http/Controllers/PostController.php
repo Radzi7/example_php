@@ -29,10 +29,10 @@ class PostController extends Controller
             //     'content' => ['required', 'string'],
             // ]);
 
-        $validated = validator($request->all(),[
-            'title' => ['required', 'string', 'max:100'],
-            'content' => ['required', 'string'],
-        ])->validate();
+        // $validated = validator($request->all(),[
+        //     'title' => ['required', 'string', 'max:100'],
+        //     'content' => ['required', 'string'],
+        // ])->validate();
 
             // if(true){
             //     throw ValidationException::withMessages([
@@ -40,7 +40,7 @@ class PostController extends Controller
             //     ]);
             // }
 
-        dd($validated);
+        // dd($validated);
 
 
 

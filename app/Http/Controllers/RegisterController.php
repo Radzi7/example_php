@@ -26,7 +26,7 @@ class RegisterController extends Controller
         // dd($request->missing('name'));
 
         // return "Запрос на регистрацию";
-        // return redirect()->route('user.posts');
-        return redirect()->back()->withInput();
+        return redirect()->route('user.posts');
+        // return redirect()->back()->withInput();
     }
 }
