@@ -35,32 +35,17 @@ class BlogController extends Controller
             1 => __('Первая категория'),
             2 => __('Вторая категория'),
         ];
-        $validated = $request->validate([
-            'limit' => ['nullable', 'integer', 'min:1', 'max:100'],
-            'page' => ['nullable', 'integer', 'min:1', 'max:100'],
-        ]);
 
-        // $page = $validated['page'] ?? 1;
-        $limit = $validated['limit'] ?? 6;
-        // $offset = $limit * ($page - 1);
-
-        // $posts = Post::all(['id','title', 'published_at']);
-        // $posts = Post::query()->limit($limit)->offset($offset)->get(['id','title', 'published_at']);
-        // $posts = Post::query()->latest('published_at')->paginate($limit);
-        // $posts = Post::query()->oldest('published_at')->paginate($limit);
-        $posts = Post::query()->orderBy('published_at', 'desc')->paginate( $limit, ['id','title', 'published_at']);
+        $posts = Post::query()->orderBy('published_at', 'desc')->paginate(6);
         
         // dd($post->toArray());
 
         return view('blog.index', compact('posts','categories'));
     }
-    public function show($post)
+    // public function show(Request $request,  Post $post)
+    public function show(Request $request, $post)
     {
-        $post = (object)[
-            'id'=> 123,
-            'title'=> "Lorem ipsum dolor sit amet.",
-            'content'=>'Lorem ipsum <strong>dolor</strong> sit amet consectetur adipisicing elit. Exercitationem, placeat?'
-        ];
+        $post = Post::query()->findOrFail($post, ['id', 'title', 'content']);
          return view('blog.show', compact('post'));
     }
     public function like($post){
