@@ -44,25 +44,21 @@ class PostController extends Controller
         session(['alert' => __('Сохранено.')]);
         return redirect()->route('user.posts.show', 123);
     }
-    public function show ($posts){
-        $posts = Post::all(['id','title', 'published_at']);
-        return  view('user.posts.show', compact('posts'));
+    public function show (Request $request, $post){ 
+        
+        $post = Post::query()->findOrFail($post, ['id', 'title', 'published_at', 'content']);
+        return  view('user.posts.show', compact('post'));
     }
-    public function edit ($post){
-        $post = (object)[
-            'id'=> 123,
-            'title'=> "Lorem ipsum dolor sit amet.",
-            'content'=>'Lorem ipsum <strong>dolor</strong> sit amet consectetur adipisicing elit. Exercitationem, placeat?'
-        ];
+    public function edit (Request $request, Post $post){
+        
         return view('user.posts.edit', compact('post'));
     }
     public function update (Request $request, $post){
         // $data = $request->all();
         // dd($data);
-        // return redirect()->route('user.posts.show', $post);
         session(['alert' => __('Обновлено.')]);
-        return redirect()->back();
-        
+        return redirect()->route('user.posts.show', $post);
+        // return redirect()->back();
     }
     public function delete ($post){
         return redirect()->route('user.posts');
