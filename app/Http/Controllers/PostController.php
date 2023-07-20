@@ -11,12 +11,8 @@ use Illuminate\Validation\ValidationException;
 class PostController extends Controller
 {
     public function index (){
-        $post = (object)[
-            'id'=> 123,
-            'title'=> "Lorem ipsum dolor sit amet.",
-            'content'=>'Lorem ipsum <strong>dolor</strong> sit amet consectetur adipisicing elit. Exercitationem, placeat?'
-        ];
-        $posts = array_fill(0,10,$post);
+        $posts = Post::query()->paginate( 6, ['id','title', 'published_at']);
+
         return view('user.posts.index', compact('posts'));
     }
     public function create (){
@@ -25,12 +21,6 @@ class PostController extends Controller
     }
     // public function store (StorePostRequest $request){
     public function store (Request $request){
-        // $validated = $request->validated();
-
-            // $validated = request()->validate([
-            //     'title' => ['required', 'string', 'max:100'],
-            //     'content' => ['required', 'string'],
-            // ]);
 
         $validated = validator($request->all(),[
             'title' => ['required', 'string', 'max:100'],
@@ -38,14 +28,6 @@ class PostController extends Controller
             'published_at' => ['nullable', 'string', 'date'],
             'published' => ['nullable', 'string', ],
         ])->validate();
-
-            // if(true){
-            //     throw ValidationException::withMessages([
-            //         'account' => __("Недостаточно средств."),
-            //     ]);
-            // }
-
-        // dd($validated);
 
         $post = Post::query()->create([
             'user_id' => User::query()->value('id'),
@@ -57,19 +39,14 @@ class PostController extends Controller
 
         dd($post->toArray());
 
-
         // $data = $request->all();
         // dd($data);
         session(['alert' => __('Сохранено.')]);
         return redirect()->route('user.posts.show', 123);
     }
-    public function show ($post){
-        $post = (object)[
-            'id'=> 123,
-            'title'=> "Lorem ipsum dolor sit amet.",
-            'content'=>'Lorem ipsum <strong>dolor</strong> sit amet consectetur adipisicing elit. Exercitationem, placeat?'
-        ];
-        return  view('user.posts.show', compact('post'));
+    public function show ($posts){
+        $posts = Post::all(['id','title', 'published_at']);
+        return  view('user.posts.show', compact('posts'));
     }
     public function edit ($post){
         $post = (object)[
